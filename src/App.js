@@ -5,6 +5,7 @@ import Appointment from './Components/Pages/Appointment';
 import ContactUs from './Components/Pages/ContactUs';
 import Home from './Components/Pages/Home/Home';
 import Reviews from './Components/Pages/Reviews';
+import Footer from './Components/SharedPages/Footer';
 import Navbar from './Components/SharedPages/Navbar';
 import NotFoundPage from './Components/SharedPages/NotFoundPage';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/contactus' element={<ContactUs />}></Route>
         <Route path='/*' element={<NotFoundPage />}></Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -35,7 +35,7 @@ const Info = () => {
     }
     
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 px-12 py-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 py-5">
             <InfoCard color={color1} card={card1}></InfoCard>
             <InfoCard color={color2} card={card2}></InfoCard>
             <InfoCard color={color3} card={card3}></InfoCard>

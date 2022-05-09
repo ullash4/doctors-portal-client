@@ -77,10 +77,10 @@ const Navbar = () => {
             </a>
             <ul className="p-2">
               <li>
-                <a>Submenu 1</a>
+                <a href="d">Submenu 1</a>
               </li>
               <li>
-                <a>Submenu 2</a>
+                <a >Submenu 2</a>
               </li>
             </ul>
           </li>

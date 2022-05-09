@@ -6,6 +6,7 @@ import ContactUs from './Components/Pages/ContactUs';
 import Home from './Components/Pages/Home/Home';
 import Reviews from './Components/Pages/Reviews';
 import Navbar from './Components/SharedPages/Navbar';
+import NotFoundPage from './Components/SharedPages/NotFoundPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/appointment' element={<Appointment />}></Route>
         <Route path='/reviews' element={<Reviews />}></Route>
         <Route path='/contactus' element={<ContactUs />}></Route>
+        <Route path='/*' element={<NotFoundPage />}></Route>
       </Routes>
     </div>
   );

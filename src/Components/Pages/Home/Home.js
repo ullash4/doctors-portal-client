@@ -9,13 +9,18 @@ import ContactUs from '../../SharedPages/ContactUs';
 
 const Home = () => {
     return (
-        <div className="px-5 md:px-6 lg:px-12 ">
+        <div>
+            <div className="px-5 md:px-6 lg:px-12 ">
+
             <Banner />
             <Info />
             <Service />
             <Care />
+            </div>
             <DocAppointment />
+            <div className="px-5 md:px-6 lg:px-12 ">
             <Testimonials />
+            </div>
             <ContactUs />
         </div>
     );

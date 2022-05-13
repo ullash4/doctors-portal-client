@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import React, { useRef } from "react";
 
 const Modal = ({ treatment, date, setTreatment }) => {
-  const { _id, name, slots } = treatment;
+  const {  name, slots } = treatment;
 
   const slotRef = useRef("")
   const emailRef = useRef("")

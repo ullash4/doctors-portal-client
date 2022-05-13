@@ -6,6 +6,7 @@ import ContactUs from './Components/Pages/ContactUs';
 import Home from './Components/Pages/Home/Home';
 import LogIn from './Components/Pages/LogIn';
 import Reviews from './Components/Pages/Reviews';
+import SignUp from './Components/Pages/SignUp';
 import Footer from './Components/SharedPages/Footer';
 import Navbar from './Components/SharedPages/Navbar';
 import NotFoundPage from './Components/SharedPages/NotFoundPage';
@@ -21,6 +22,7 @@ function App() {
         <Route path='/reviews' element={<Reviews />}></Route>
         <Route path='/contactus' element={<ContactUs />}></Route>
         <Route path='/login' element={<LogIn />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/*' element={<NotFoundPage />}></Route>
       </Routes>
       <Footer />

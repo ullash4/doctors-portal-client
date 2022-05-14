@@ -17,7 +17,7 @@ const Services = ({ service, setTreatment }) => {
     <div className="card lg:max-w-lg bg-base-100 shadow-xl">
       <div className="card-body items-center text-center">
         <h2 className="card-title text-primary">{name}</h2>
-        <p>{slots}</p>
+        <p>{slots.slice(0,3)}</p>
         <p>
           {slots.length} {space}
         </p>

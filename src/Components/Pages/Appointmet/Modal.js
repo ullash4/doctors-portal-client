@@ -1,22 +1,51 @@
 import { format } from "date-fns";
 import React, { useRef } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../../firebase.init";
 
 const Modal = ({ treatment, date, setTreatment }) => {
-  const { name, slots } = treatment;
+  const [user] = useAuthState(auth);
+  const { _id, name, slots } = treatment;
 
   const slotRef = useRef("");
-  const emailRef = useRef("");
-  const nameRef = useRef("");
+
   const numberRef = useRef("");
+
+  const formatedDate = format(date, "PP")
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const slot = slotRef.current.value;
-    const email = emailRef.current.value;
-    const name = nameRef.current.value;
-    const number = numberRef.current.value;
-    console.log(slot, email, name, number);
-    setTreatment(null);
+
+    const booking = {
+      treatmentId: _id,
+      treatment: name,
+      date: formatedDate,
+      slot,
+      patient: user.email,
+      patientName: user.displayName,
+      phone: numberRef.current.value,
+    };
+
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.success){
+          toast(`Your appointment at ${formatedDate} on ${slot}`)
+        }else{
+          toast.error(`You have already an appointment at ${data.booking?.date} on ${data.booking?.slot}`)
+        }
+        // to close modal
+        setTreatment(null);
+        
+      });
   };
 
   return (
@@ -25,7 +54,7 @@ const Modal = ({ treatment, date, setTreatment }) => {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <label
-            for="my-modal"
+            htmlFor="my-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -46,20 +75,22 @@ const Modal = ({ treatment, date, setTreatment }) => {
               ref={slotRef}
               className="select select-bordered w-full max-w-xs"
             >
-              {slots.map((slot) => (
-                <option value={slot}>{slot}</option>
+              {slots.map((slot, index) => (
+                <option key={index} value={slot}>
+                  {slot}
+                </option>
               ))}
             </select>
             <input
-              ref={nameRef}
               type="text"
-              placeholder="Your Name"
+              disabled
+              value={user.displayName}
               className="input input-bordered w-full max-w-xs my-2"
             />
             <input
-              ref={emailRef}
               type="email"
-              placeholder="Your Email"
+              disabled
+              value={user.email}
               className="input input-bordered w-full max-w-xs my-2"
             />
             <input

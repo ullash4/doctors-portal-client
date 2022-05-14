@@ -1,20 +1,23 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogIn from "../SharedPages/SocialLogIn";
 import { useForm } from "react-hook-form";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../SharedPages/Loading";
 
 const LogIn = () => {
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  let location = useLocation();
+  
   const [
-    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
     user,
     loading,
     error,
-  ] = useCreateUserWithEmailAndPassword(auth);
+  ] = useSignInWithEmailAndPassword(auth);
+
+  let from = location.state?.from?.pathname || '/';
 
   const {
     register,
@@ -33,20 +36,20 @@ const LogIn = () => {
   }
 
   if(user){
-    navigate('/')
+    navigate(from, {replace: true})
   }
 
 
 
   const onSubmit = (data) => {
-    createUserWithEmailAndPassword(data.email, data.password)
+    signInWithEmailAndPassword(data.email, data.password)
   }
   return (
     <div className="card w-96 mx-auto bg-base-100 shadow-xl">
       <div className="card-body items-center text-center">
-        <h2 className="card-title">Log In</h2>
+        <h2 className="card-title text-3xl">Log In</h2>
         <div className="form-control w-full max-w-xs">
-          
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">

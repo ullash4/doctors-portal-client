@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
-  const handleSignOut =()=>{
+  const handleSignOut = () => {
     signOut(auth);
-  }
+  };
   const menuItems = (
     <>
       <li>
@@ -26,11 +26,20 @@ const Navbar = () => {
       <li>
         <Link to={"/contactus"}>Contact us</Link>
       </li>
-      {user ? <li>
-        <button onClick={handleSignOut}>Sign Out</button>
-      </li> : <li>
-        <Link to={"/login"}>Log In</Link>
-      </li>}
+      {user && (
+        <li>
+          <Link to={"/dashboard"}>DashBoard</Link>
+        </li>
+      )}
+      {user ? (
+        <li>
+          <button onClick={handleSignOut}>Sign Out</button>
+        </li>
+      ) : (
+        <li>
+          <Link to={"/login"}>Log In</Link>
+        </li>
+      )}
     </>
   );
   return (
@@ -64,8 +73,18 @@ const Navbar = () => {
           Doctors Portal
         </Link>
       </div>
-      <div className="navbar-end  hidden lg:flex">
+      <div
+        className={`hidden lg:flex ${user ? "navbar-center" : "navbar-end"}`}
+      >
         <ul className="menu menu-horizontal  p-0">{menuItems}</ul>
+      </div>
+      <div className="navbar-end lg:hidden block">
+        <label
+          htmlFor="dashboard-sideBar"
+          className="btn btn-primary drawer-button lg:hidden"
+        >
+          Open drawer
+        </label>
       </div>
     </div>
   );

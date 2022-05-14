@@ -13,6 +13,9 @@ import NotFoundPage from './Components/SharedPages/NotFoundPage';
 import RequireAuth from './Components/SharedPages/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DashBoard from './Components/Pages/DashBoard/DashBoard';
+import MyAppointment from './Components/Pages/DashBoard/MyAppointment';
+import MyReview from './Components/Pages/DashBoard/MyReview';
 
 
 
@@ -33,6 +36,14 @@ function App() {
         <Route path='/login' element={<LogIn />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/*' element={<NotFoundPage />}></Route>
+        <Route path='/dashboard' element={
+        <RequireAuth>
+          <DashBoard />
+        </RequireAuth>
+        }>
+          <Route index element={<MyAppointment></MyAppointment>}></Route>
+          <Route path='review' element={<MyReview></MyReview>}></Route>
+        </Route>
       </Routes>
       <ToastContainer />
       <Footer />

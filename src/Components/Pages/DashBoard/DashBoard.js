@@ -14,7 +14,7 @@ const DashBoard = () => {
       </div>
       <div className="drawer-side rounded-lg shadow-xl">
         <label htmlFor="dashboard-sideBar" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content">
+        <ul className="menu p-4 overflow-y-auto w-48 bg-base-200 text-base-content">
           {/*   <!-- Sidebar content here --> */}
           <li>
             <Link to={"/dashboard"}>My Appointments</Link>

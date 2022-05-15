@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogIn from "../SharedPages/SocialLogIn";
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../SharedPages/Loading";
+import useToken from "../../Hooks/useToken";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const LogIn = () => {
     error,
   ] = useSignInWithEmailAndPassword(auth);
 
+  const [token] = useToken(user)
+
   let from = location.state?.from?.pathname || '/';
 
   const {
@@ -24,6 +27,12 @@ const LogIn = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  useEffect(()=>{
+    if(token){
+      navigate(from, {replace: true})
+    }
+  },[token, navigate, from])
 
   if(loading){
     return <Loading></Loading>
@@ -35,9 +44,7 @@ const LogIn = () => {
     errorMessage= <p className="text-red-500"><small>{error.message}</small></p>
   }
 
-  if(user){
-    navigate(from, {replace: true})
-  }
+  
 
 
 

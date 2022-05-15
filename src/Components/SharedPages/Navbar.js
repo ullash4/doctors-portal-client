@@ -8,6 +8,7 @@ const Navbar = () => {
   const [user] = useAuthState(auth);
   const handleSignOut = () => {
     signOut(auth);
+    localStorage.removeItem('accessToken')
   };
   const menuItems = (
     <>
@@ -78,7 +79,7 @@ const Navbar = () => {
       >
         <ul className="menu menu-horizontal  p-0">{menuItems}</ul>
       </div>
-      <div className="navbar-end lg:hidden block">
+      <div className="w-48 ml-40 lg:hidden block">
         <label
           htmlFor="dashboard-sideBar"
           className="btn btn-primary drawer-button lg:hidden"

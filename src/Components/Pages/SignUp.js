@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../SharedPages/Loading";
+import useToken from "../../Hooks/useToken";
 
 
 const SignUp = () => {
@@ -19,13 +20,15 @@ const SignUp = () => {
 
   const [updateProfile, updating, error] = useUpdateProfile(auth);
 
+  const [token] = useToken(user)
+
   let from = location.state?.from?.pathname || '/'
 
   useEffect(()=>{
-    if(user){
+    if(token){
       navigate(from, {replace: true})
     }
-  },[from, navigate, user])
+  },[from, navigate, token])
 
   const {
     register,

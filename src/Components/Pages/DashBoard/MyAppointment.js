@@ -8,7 +8,12 @@ const MyAppointment = () => {
     console.log(user);
     useEffect(()=>{
         if(user){
-            fetch(`http://localhost:5000/booking?patient=${user.email}`)
+            fetch(`http://localhost:5000/booking?patient=${user.email}`,{
+              method: "GET",
+              headers:{
+                "authorization" : `Bearer ${localStorage.getItem('accessToken')}`
+              }
+            })
         .then(res=>res.json())
         .then(data=>{
             setAppointment(data)
@@ -43,7 +48,7 @@ const MyAppointment = () => {
             </div>
             <div>
               <div class="font-bold">{appoint.patientName|| "Normal guy"}</div>
-              <div class="text-sm opacity-50">United States</div>
+              <div class="text-sm opacity-50">{appoint.patient}</div>
             </div>
           </div>
                     

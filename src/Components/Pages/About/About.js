@@ -1,8 +1,10 @@
 import React from "react";
+import PageTitle from "../../SharedPages/PageTitle";
 
 const About = () => {
   return (
     <>
+    <PageTitle title="About"></PageTitle>
       <div className="grid grid-cols-1 justify-items-center">
         <label className="swap swap-flip text-9xl">
           <input type="checkbox" />

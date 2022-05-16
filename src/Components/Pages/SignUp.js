@@ -6,6 +6,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-fireb
 import auth from "../../firebase.init";
 import Loading from "../SharedPages/Loading";
 import useToken from "../../Hooks/useToken";
+import { toast } from "react-toastify";
 
 
 const SignUp = () => {
@@ -16,7 +17,7 @@ const SignUp = () => {
     user,
     loading,
     sError,
-  ] = useCreateUserWithEmailAndPassword(auth);
+  ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification:true});
 
   const [updateProfile, updating, error] = useUpdateProfile(auth);
 
@@ -39,7 +40,7 @@ const SignUp = () => {
   const onSubmit = async(data) => {
     await createUserWithEmailAndPassword(data.email, data.password)
     await updateProfile({displayName: data.name})
-    
+    toast.success("Check Your email. We send a verification")
   }
 
   if(loading || updating){

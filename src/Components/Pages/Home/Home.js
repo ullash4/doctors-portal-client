@@ -6,10 +6,12 @@ import Care from './Care';
 import DocAppointment from './DocAppointment';
 import Testimonials from './Testimonials';
 import ContactUs from '../../SharedPages/ContactUs';
+import PageTitle from '../../SharedPages/PageTitle';
 
 const Home = () => {
     return (
         <div>
+            <PageTitle title="Home"></PageTitle>
             <div className="px-5 md:px-6 lg:px-12 ">
 
             <Banner />

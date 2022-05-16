@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import useAdmin from "../../../Hooks/useAdmin";
+import PageTitle from "../../SharedPages/PageTitle";
 
 const DashBoard = () => {
   const [user] = useAuthState(auth);
@@ -10,6 +11,7 @@ const DashBoard = () => {
   console.log(admin);
   return (
     <div className="drawer drawer-mobile mb-10">
+      <PageTitle title="Dashboard"></PageTitle>
       <input id="dashboard-sideBar" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center ">
         <h1 className="text-5xl text-center font-black text-primary">

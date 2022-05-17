@@ -18,6 +18,7 @@ import MyAppointment from './Components/Pages/DashBoard/MyAppointment';
 import MyReview from './Components/Pages/DashBoard/MyReview';
 import AllUsers from './Components/Pages/DashBoard/AllUsers';
 import AddDoctor from './Components/Pages/DashBoard/AddDoctor';
+import ManageDoctors from './Components/Pages/DashBoard/ManageDoctors';
 
 
 
@@ -47,6 +48,7 @@ function App() {
           <Route path='review' element={<MyReview></MyReview>}></Route>
           <Route path='users' element={<AllUsers></AllUsers>}></Route>
           <Route path='addDoctor' element={<AddDoctor></AddDoctor>}></Route>
+          <Route path='manageDoctors' element={<ManageDoctors></ManageDoctors>}></Route>
         </Route>
       </Routes>
       <ToastContainer />

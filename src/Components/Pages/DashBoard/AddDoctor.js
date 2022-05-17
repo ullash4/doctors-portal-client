@@ -17,7 +17,47 @@ const AddDoctor = () => {
       .then((data) => setService(data));
   }, []);
 
+  const imageStorageKey = "71aee0335e696f40618585ac458fc839";
+
   const onSubmit = async (data) => {
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if(result.success){
+          const img = result.data.url;
+          const doctor={
+            name: data.name,
+            email: data.email,
+            specialty: data.speciality,
+            img: img
+          }
+          // send to your database
+          fetch('http://localhost:5000/doctor',{
+            method: "POST",
+            headers:{
+              'content-type':'application/json',
+              authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(doctor)
+          })
+          .then(res=>res.json())
+          .then(data=>{
+            if(data.insertedId){
+              toast.success("Doctor added successfully")
+            }
+            console.log(data);
+          })
+        }
+        
+      });
+
     console.log(data);
     toast.success("Successfully Added a doctor");
   };
@@ -90,7 +130,7 @@ const AddDoctor = () => {
           </label>
           <select
             {...register("specialty")}
-            class="select select-bordered w-full max-w-xs"
+            className="select select-bordered w-full max-w-xs"
           >
             {service.map((s) => (
               <option key={s._id} value={s.name}>
@@ -102,22 +142,22 @@ const AddDoctor = () => {
 
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text">Photo URL</span>
+            <span className="label-text">Image</span>
           </label>
           <input
-            {...register("photourl", {
+            {...register("image", {
               required: {
                 value: true,
-                message: "Photo url is required",
+                message: "Image is required",
               },
             })}
             type="file"
             className="input input-bordered w-full max-w-xs"
           />
           <label className="label">
-            {errors.photourl?.type === "required" && (
+            {errors.image?.type === "required" && (
               <span className="label-text-alt text-red-500">
-                {errors.photourl.message}
+                {errors.image.message}
               </span>
             )}
           </label>

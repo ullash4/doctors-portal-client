@@ -22,6 +22,7 @@ const useAdmin = (user) => {
             })
         }
     },[user])
+
     return [admin, adminLoading]
 };
 

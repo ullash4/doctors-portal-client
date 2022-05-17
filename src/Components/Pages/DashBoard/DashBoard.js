@@ -1,12 +1,16 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import PageTitle from "../../SharedPages/PageTitle";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import useAdmin from "../../../Hooks/useAdmin"
 
 
 const DashBoard = () => {
   
-  
-
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user)
+  console.log(admin);
 
   return (
     <div className="drawer drawer-mobile mb-10">
@@ -34,6 +38,9 @@ const DashBoard = () => {
           </li>
           <li>
             <NavLink to={"/dashboard/addDoctor"}>Add Doctor</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/manageDoctors"}>Manage Doctors</NavLink>
           </li>
         </ul>
       </div>

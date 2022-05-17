@@ -35,7 +35,7 @@ const AddDoctor = () => {
           const doctor={
             name: data.name,
             email: data.email,
-            specialty: data.speciality,
+            specialty: data.specialty,
             img: img
           }
           // send to your database
@@ -50,7 +50,7 @@ const AddDoctor = () => {
           .then(res=>res.json())
           .then(data=>{
             if(data.insertedId){
-              toast.success("Doctor added successfully")
+              toast.success("Successfully Added a doctor")
             }
             console.log(data);
           })
@@ -59,7 +59,7 @@ const AddDoctor = () => {
       });
 
     console.log(data);
-    toast.success("Successfully Added a doctor");
+    toast.success("Please wait uploading Doctors data on our server");
   };
   return (
     <div className="mb-10 mt-7 shadow-2xl py-10 px-16 bg-gray-300 rounded-lg">

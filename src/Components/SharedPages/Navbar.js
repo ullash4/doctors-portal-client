@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
@@ -13,23 +13,23 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li>
-        <Link to={"/"}>Home</Link>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <Link to={"/about"}>About</Link>
+        <NavLink to={"/about"}>About</NavLink>
       </li>
       <li>
-        <Link to={"/appointment"}>Appointment</Link>
+        <NavLink to={"/appointment"}>Appointment</NavLink>
       </li>
       <li>
-        <Link to={"/reviews"}>Reviews</Link>
+        <NavLink to={"/reviews"}>Reviews</NavLink>
       </li>
       <li>
-        <Link to={"/contactus"}>Contact us</Link>
+        <NavLink to={"/contactus"}>Contact us</NavLink>
       </li>
       {user && (
         <li>
-          <Link to={"/dashboard"}>DashBoard</Link>
+          <NavLink to={"/dashboard"}>DashBoard</NavLink>
         </li>
       )}
       {user ? (
@@ -65,7 +65,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex="0"
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu gap-2 menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {menuItems}
           </ul>
@@ -75,9 +75,9 @@ const Navbar = () => {
         </Link>
       </div>
       <div
-        className={`hidden lg:flex ${user ? "navbar-center" : "navbar-end"}`}
+        className={`hidden  lg:flex ${user ? "navbar-center" : "navbar-end"}`}
       >
-        <ul className="menu menu-horizontal  p-0">{menuItems}</ul>
+        <ul className="menu gap-2 menu-horizontal  p-0">{menuItems}</ul>
       </div>
       <div className="w-48 ml-40 lg:hidden block">
         <label

@@ -1,14 +1,13 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import auth from "../../../firebase.init";
-import { useAuthState } from "react-firebase-hooks/auth";
-import useAdmin from "../../../Hooks/useAdmin";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import PageTitle from "../../SharedPages/PageTitle";
 
+
 const DashBoard = () => {
-  const [user] = useAuthState(auth);
-  const [admin] = useAdmin(user);
-  console.log(admin);
+  
+  
+
+
   return (
     <div className="drawer drawer-mobile mb-10">
       <PageTitle title="Dashboard"></PageTitle>
@@ -22,16 +21,19 @@ const DashBoard = () => {
       </div>
       <div className="drawer-side rounded-lg shadow-xl">
         <label htmlFor="dashboard-sideBar" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-48 bg-base-200 text-base-content">
+        <ul className="menu p-4 gap-2 overflow-y-auto w-48 bg-base-200 text-base-content">
           {/*   <!-- Sidebar content here --> */}
           <li>
             <Link to={"/dashboard"}>My Appointments</Link>
           </li>
           <li>
-            <Link to={"/dashboard/review"}>My Review</Link>
+            <NavLink to={"/dashboard/review"}>My Review</NavLink>
           </li>
           <li>
-            <Link to={"/dashboard/users"}>All Users</Link>
+            <NavLink to={"/dashboard/users"}>All Users</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/addDoctor"}>Add Doctor</NavLink>
           </li>
         </ul>
       </div>

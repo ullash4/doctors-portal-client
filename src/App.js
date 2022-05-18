@@ -19,6 +19,7 @@ import MyReview from './Components/Pages/DashBoard/MyReview';
 import AllUsers from './Components/Pages/DashBoard/AllUsers';
 import AddDoctor from './Components/Pages/DashBoard/AddDoctor';
 import ManageDoctors from './Components/Pages/DashBoard/ManageDoctors';
+import Payment from './Components/Pages/DashBoard/Payment';
 
 
 
@@ -46,6 +47,7 @@ function App() {
         }>
           <Route index element={<MyAppointment></MyAppointment>}></Route>
           <Route path='review' element={<MyReview></MyReview>}></Route>
+          <Route path='payment/:id' element={<Payment />}></Route>
           <Route path='users' element={<AllUsers></AllUsers>}></Route>
           <Route path='addDoctor' element={<AddDoctor></AddDoctor>}></Route>
           <Route path='manageDoctors' element={<ManageDoctors></ManageDoctors>}></Route>

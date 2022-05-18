@@ -1,7 +1,7 @@
 import React from "react";
 
 const Services = ({ service, setTreatment }) => {
-  const { name, slots } = service;
+  const { name, slots, price } = service;
 
   let space;
   if (slots?.length < 3) {
@@ -16,11 +16,12 @@ const Services = ({ service, setTreatment }) => {
   return (
     <div className="card lg:max-w-lg bg-base-100 shadow-xl">
       <div className="card-body items-center text-center">
-        <h2 className="card-title text-primary">{name}</h2>
-        <p>{slots}</p>
+        <h2 className="card-title text-primary text-2xl">{name}</h2>
+        <p>{slots[0]}</p>
         <p>
           {slots?.length} {space}
         </p>
+        <p className="text-xl font-bold">Price: {price}</p>
         <div className="card-actions">
           {slots?.length ? (
             <label

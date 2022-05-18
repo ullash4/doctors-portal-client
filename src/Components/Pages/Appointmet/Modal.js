@@ -6,7 +6,7 @@ import auth from "../../../firebase.init";
 
 const Modal = ({ treatment, date, setTreatment }) => {
   const [user] = useAuthState(auth);
-  const { _id, name, slots } = treatment;
+  const { _id, name, slots, price } = treatment;
 
   const slotRef = useRef("");
 
@@ -23,6 +23,7 @@ const Modal = ({ treatment, date, setTreatment }) => {
       treatment: name,
       date: formatedDate,
       slot,
+      price,
       patient: user.email,
       patientName: user.displayName,
       phone: numberRef.current.value,

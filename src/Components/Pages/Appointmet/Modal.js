@@ -12,7 +12,7 @@ const Modal = ({ treatment, date, setTreatment }) => {
 
   const numberRef = useRef("");
 
-  const formatedDate = format(date, "PP")
+  const formatedDate = format(date, "PP");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ const Modal = ({ treatment, date, setTreatment }) => {
       phone: numberRef.current.value,
     };
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://shielded-garden-48042.herokuapp.com/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -38,14 +38,15 @@ const Modal = ({ treatment, date, setTreatment }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.success){
-          toast(`Your appointment at ${formatedDate} on ${slot}`)
-        }else{
-          toast.error(`You have already an appointment at ${data.booking?.date} on ${data.booking?.slot}`)
+        if (data.success) {
+          toast(`Your appointment at ${formatedDate} on ${slot}`);
+        } else {
+          toast.error(
+            `You have already an appointment at ${data.booking?.date} on ${data.booking?.slot}`
+          );
         }
         // to close modal
         setTreatment(null);
-        
       });
   };
 

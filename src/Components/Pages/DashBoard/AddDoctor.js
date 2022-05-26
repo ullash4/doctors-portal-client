@@ -12,7 +12,7 @@ const AddDoctor = () => {
   const [service, setService] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/service`)
+    fetch(`https://shielded-garden-48042.herokuapp.com/service`)
       .then((res) => res.json())
       .then((data) => setService(data));
   }, []);
@@ -30,32 +30,31 @@ const AddDoctor = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if(result.success){
+        if (result.success) {
           const img = result.data.url;
-          const doctor={
+          const doctor = {
             name: data.name,
             email: data.email,
             specialty: data.specialty,
-            img: img
-          }
+            img: img,
+          };
           // send to your database
-          fetch('http://localhost:5000/doctor',{
+          fetch("https://shielded-garden-48042.herokuapp.com/doctor", {
             method: "POST",
-            headers:{
-              'content-type':'application/json',
-              authorization: `bearer ${localStorage.getItem('accessToken')}`
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
             },
-            body: JSON.stringify(doctor)
+            body: JSON.stringify(doctor),
           })
-          .then(res=>res.json())
-          .then(data=>{
-            if(data.insertedId){
-              toast.success("Successfully Added a doctor")
-            }
-            console.log(data);
-          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                toast.success("Successfully Added a doctor");
+              }
+              console.log(data);
+            });
         }
-        
       });
 
     console.log(data);

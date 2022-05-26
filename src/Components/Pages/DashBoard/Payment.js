@@ -3,15 +3,15 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../SharedPages/Loading";
 import CheckoutFrom from "./CheckoutFrom";
-import {loadStripe} from '@stripe/stripe-js';
-import {Elements} from '@stripe/react-stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
 const Payment = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery(["singleBooking", id], () =>
-    fetch(`http://localhost:5000/booking/${id}`, {
+    fetch(`https://shielded-garden-48042.herokuapp.com/booking/${id}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -24,7 +24,6 @@ const Payment = () => {
 
   return (
     <div className="my-10 mx-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
-      
       <div class="card  bg-gray-200 shadow-xl my-10 ">
         <div class="card-body items-center text-center">
           <h2 class="card-title text-2xl font-bold">
@@ -47,13 +46,11 @@ const Payment = () => {
         </div>
       </div>
       <div class=" card bg-gray-200 shadow-xl p-10 text-white ">
-        
         <Elements stripe={stripePromise}>
-      <CheckoutFrom />
-    </Elements>
-        </div>
+          <CheckoutFrom />
+        </Elements>
       </div>
-    
+    </div>
   );
 };
 

@@ -8,7 +8,7 @@ const DoctorRow = ({ doctor, index, refetch }) => {
     const sure = window.confirm("Are you sure?");
 
     if (sure) {
-      fetch(`http://localhost:5000/doctor/${_id}`, {
+      fetch(`https://shielded-garden-48042.herokuapp.com/doctor/${_id}`, {
         method: "DELETE",
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,

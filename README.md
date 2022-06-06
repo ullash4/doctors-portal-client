@@ -1,4 +1,4 @@
-# Doctors Portal - Doctors appointments with patients related website
+# Doctors Portal - This is a webpage where patients make appointments
 ## Website Name : [Doctors Portal](https://doctors-portal-ecdf6.web.app/)
 ## Website Live Link : [Live Site](https://doctors-portal-ecdf6.web.app/)
 ## Website Client-Side Repo Link : [Client-side Repo Link](https://github.com/ullash4/doctors-portal-client)
